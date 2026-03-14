@@ -1,0 +1,1007 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Kerolos Emad - Portfolio</title>
+    <style>
+        * {
+            margin: 0;
+            padding: 0;
+            box-sizing: border-box;
+        }
+
+        body {
+            font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            color: #fff;
+            line-height: 1.6;
+        }
+
+        /* Navigation */
+        nav {
+            position: fixed;
+            width: 100%;
+            background: rgba(15, 23, 42, 0.95);
+            backdrop-filter: blur(10px);
+            border-bottom: 1px solid #334155;
+            z-index: 1000;
+            top: 0;
+        }
+
+        .nav-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            padding: 0 20px;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+            height: 60px;
+        }
+
+        .logo {
+            font-size: 24px;
+            font-weight: bold;
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .nav-menu {
+            display: flex;
+            gap: 30px;
+            list-style: none;
+        }
+
+        .nav-menu a {
+            color: #fff;
+            text-decoration: none;
+            transition: color 0.3s ease;
+            position: relative;
+        }
+
+        .nav-menu a:hover {
+            color: #60a5fa;
+        }
+
+        .nav-menu a::after {
+            content: '';
+            position: absolute;
+            bottom: -5px;
+            left: 0;
+            width: 0;
+            height: 2px;
+            background: #60a5fa;
+            transition: width 0.3s ease;
+        }
+
+        .nav-menu a:hover::after {
+            width: 100%;
+        }
+
+        .menu-toggle {
+            display: none;
+            background: none;
+            border: none;
+            color: #fff;
+            font-size: 24px;
+            cursor: pointer;
+        }
+
+        /* Hero Section */
+        #home {
+            margin-top: 60px;
+            padding: 100px 20px;
+            max-width: 1200px;
+            margin-left: auto;
+            margin-right: auto;
+        }
+
+        .hero-container {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-content h1 {
+            font-size: 56px;
+            margin-bottom: 20px;
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            animation: slideInLeft 0.8s ease-out;
+        }
+
+        .hero-content p {
+            font-size: 24px;
+            color: #cbd5e1;
+            margin-bottom: 15px;
+            animation: slideInLeft 0.8s ease-out 0.1s backwards;
+        }
+
+        .hero-content > p:last-of-type {
+            font-size: 16px;
+            color: #94a3b8;
+            margin-bottom: 30px;
+            animation: slideInLeft 0.8s ease-out 0.2s backwards;
+        }
+
+        .hero-buttons {
+            display: flex;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: slideInLeft 0.8s ease-out 0.3s backwards;
+        }
+
+        .btn {
+            padding: 12px 30px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            cursor: pointer;
+            border: none;
+            font-size: 16px;
+        }
+
+        .btn-primary {
+            background: #3b82f6;
+            color: #fff;
+        }
+
+        .btn-primary:hover {
+            background: #2563eb;
+            transform: translateY(-2px);
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+        }
+
+        .btn-secondary {
+            border: 2px solid #60a5fa;
+            color: #fff;
+            background: transparent;
+        }
+
+        .btn-secondary:hover {
+            background: rgba(96, 165, 250, 0.1);
+            transform: translateY(-2px);
+        }
+
+        .hero-image {
+            display: flex;
+            justify-content: center;
+            animation: slideInRight 0.8s ease-out;
+        }
+
+        .profile-img-wrapper {
+            position: relative;
+            width: 320px;
+            height: 400px;
+        }
+
+        .profile-img {
+            width: 100%;
+            height: 100%;
+            border: 3px solid #60a5fa;
+            border-radius: 20px;
+            overflow: hidden;
+            background: #1e293b;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 14px;
+            transition: transform 0.3s ease, box-shadow 0.3s ease;
+            box-shadow: 0 20px 60px rgba(96, 165, 250, 0.2);
+        }
+
+        .profile-img:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 30px 80px rgba(96, 165, 250, 0.3);
+        }
+
+        .profile-img img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        /* About Section */
+        #about {
+            padding: 80px 20px;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .section-container {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        h2 {
+            font-size: 40px;
+            text-align: center;
+            margin-bottom: 60px;
+            color: #fff;
+        }
+
+        .education-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 30px;
+        }
+
+        .education-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            padding: 40px 30px;
+            text-align: center;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+        }
+
+        .education-card:hover {
+            border-color: #60a5fa;
+            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.1);
+            transform: translateY(-5px);
+        }
+
+        .education-logo {
+            width: 120px;
+            height: 120px;
+            background: #334155;
+            border-radius: 8px;
+            border: 1px solid #475569;
+            margin: 0 auto 25px;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .education-logo img {
+            width: 100%;
+            height: 100%;
+            object-fit: cover;
+        }
+
+        .education-content h3 {
+            font-size: 22px;
+            color: #60a5fa;
+            margin-bottom: 8px;
+        }
+
+        .education-content p {
+            color: #cbd5e1;
+            margin-bottom: 5px;
+        }
+
+        .education-content .grade {
+            color: #60a5fa;
+            font-weight: 600;
+            margin-top: 15px;
+        }
+
+        .education-content .period {
+            color: #94a3b8;
+            font-size: 14px;
+        }
+
+        /* Projects Section */
+        #projects {
+            padding: 80px 20px;
+        }
+
+        .projects-container {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .projects-slider {
+            position: relative;
+            display: flex;
+            align-items: center;
+            gap: 40px;
+            margin-top: 60px;
+        }
+
+        .project-card {
+            background: #1e293b;
+            border: 1px solid #334155;
+            border-radius: 8px;
+            overflow: hidden;
+            flex: 1;
+            transition: all 0.3s ease;
+            animation: fadeInUp 0.6s ease-out;
+            display: none;
+        }
+
+        .project-card.active {
+            display: block;
+        }
+
+        .project-card:hover {
+            border-color: #60a5fa;
+            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+        }
+
+        .project-image {
+            width: 100%;
+            height: 280px;
+            background: #334155;
+            overflow: hidden;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            color: #64748b;
+            font-size: 12px;
+        }
+
+        .project-image img {
+            width: 100%;
+            height: 100%;
+            object-fit: contain;
+            background: #0f172a;
+        }
+
+        .project-content {
+            padding: 40px;
+        }
+
+        .project-card h3 {
+            font-size: 28px;
+            color: #60a5fa;
+            margin-bottom: 20px;
+        }
+
+        .project-card p {
+            color: #cbd5e1;
+            margin-bottom: 30px;
+            font-size: 16px;
+            line-height: 1.8;
+        }
+
+        .project-link {
+            color: #60a5fa;
+            text-decoration: none;
+            font-weight: 600;
+            transition: color 0.3s ease;
+            display: inline-flex;
+            align-items: center;
+            gap: 8px;
+        }
+
+        .project-link:hover {
+            color: #06b6d4;
+        }
+
+        .slider-button {
+            width: 50px;
+            height: 50px;
+            border-radius: 50%;
+            background: #3b82f6;
+            color: #fff;
+            border: none;
+            font-size: 24px;
+            cursor: pointer;
+            transition: all 0.3s ease;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            flex-shrink: 0;
+        }
+
+        .slider-button:hover {
+            background: #2563eb;
+            transform: scale(1.1);
+        }
+
+        .slider-button:active {
+            transform: scale(0.95);
+        }
+
+       .project-counter {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            justify-content: center;
+            gap: 8px;
+        }
+
+        .dot {
+            width: 12px;
+            height: 12px;
+            border-radius: 50%;
+            background: #475569;
+            cursor: pointer;
+            transition: all 0.3s ease;
+        }
+
+        .dot.active {
+            background: #60a5fa;
+            transform: scale(1.3);
+        }
+
+        .dot:hover {
+            background: #60a5fa;
+        }
+
+        /* Experience Section */
+        #experience {
+            padding: 80px 20px;
+            background: rgba(30, 41, 59, 0.5);
+        }
+
+        .experience-timeline {
+            max-width: 1200px;
+            margin: 0 auto;
+            position: relative;
+        }
+
+        .experience-item {
+            border-left: 4px solid #60a5fa;
+            padding-left: 30px;
+            padding-bottom: 30px;
+            position: relative;
+            animation: slideInLeft 0.6s ease-out;
+        }
+
+        .experience-item::before {
+            content: '';
+            position: absolute;
+            left: -12px;
+            top: 0;
+            width: 20px;
+            height: 20px;
+            background: #60a5fa;
+            border-radius: 50%;
+            border: 3px solid #0f172a;
+        }
+
+        .experience-item h3 {
+            font-size: 20px;
+            color: #60a5fa;
+            margin-bottom: 5px;
+        }
+
+        .experience-item .company {
+            color: #cbd5e1;
+            font-weight: 600;
+        }
+
+        .experience-item .period {
+            color: #94a3b8;
+            font-size: 14px;
+            margin-bottom: 8px;
+        }
+
+        .experience-item .description {
+            color: #cbd5e1;
+        }
+
+        /* Contact Section */
+        #contact {
+            padding: 80px 20px;
+            text-align: center;
+        }
+
+        .contact-content {
+            max-width: 1200px;
+            margin: 0 auto;
+        }
+
+        .contact-description {
+            color: #cbd5e1;
+            font-size: 18px;
+            margin-bottom: 40px;
+        }
+
+        .contact-buttons {
+            display: flex;
+            justify-content: center;
+            gap: 20px;
+            flex-wrap: wrap;
+            animation: fadeIn 0.8s ease-out;
+        }
+
+        .contact-btn {
+            display: inline-flex;
+            align-items: center;
+            gap: 10px;
+            background: #3b82f6;
+            color: #fff;
+            padding: 12px 25px;
+            border-radius: 8px;
+            text-decoration: none;
+            font-weight: 600;
+            transition: all 0.3s ease;
+            border: none;
+            cursor: pointer;
+        }
+
+        .contact-btn:hover {
+            background: #2563eb;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+        }
+
+        /* Footer */
+        footer {
+            border-top: 1px solid #334155;
+            padding: 30px 20px;
+            text-align: center;
+            color: #94a3b8;
+        }
+
+        /* Animations */
+        @keyframes slideInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes slideInRight {
+            from {
+                opacity: 0;
+                transform: translateX(50px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeIn {
+            from {
+                opacity: 0;
+            }
+            to {
+                opacity: 1;
+            }
+        }
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(30px);
+        }
+
+        .reveal.active {
+            opacity: 1;
+            transform: translateY(0);
+            transition: all 0.6s ease-out;
+        }
+
+        /* Responsive */
+        @media (max-width: 768px) {
+            .nav-menu {
+                display: none;
+            }
+
+            .menu-toggle {
+                display: block;
+            }
+
+            .nav-menu.active {
+                display: flex;
+                position: absolute;
+                top: 60px;
+                left: 0;
+                right: 0;
+                background: #0f172a;
+                flex-direction: column;
+                gap: 0;
+                border-top: 1px solid #334155;
+            }
+
+            .nav-menu.active a {
+                padding: 15px 20px;
+                border-bottom: 1px solid #334155;
+                display: block;
+            }
+
+            .hero-container {
+                grid-template-columns: 1fr;
+                gap: 40px;
+            }
+
+            .hero-content h1 {
+                font-size: 40px;
+            }
+
+            .hero-content p {
+                font-size: 18px;
+            }
+
+            .education-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .projects-slider {
+                flex-direction: column;
+                gap: 20px;
+            }
+
+            .slider-button {
+                width: 40px;
+                height: 40px;
+                font-size: 18px;
+            }
+
+            .contact-buttons {
+                flex-direction: column;
+            }
+
+            .contact-btn {
+                justify-content: center;
+            }
+        }
+    </style>
+</head>
+<body>
+    <!-- Navigation -->
+    <nav>
+        <div class="nav-container">
+            <div class="logo">Kerolos</div>
+            <button class="menu-toggle" id="menuToggle">Menu</button>
+            <ul class="nav-menu" id="navMenu">
+                <li><a href="#home">Home</a></li>
+                <li><a href="#about">Education</a></li>
+                <li><a href="#projects">Projects</a></li>
+                <li><a href="#experience">Experience</a></li>
+                <li><a href="#contact">Contact</a></li>
+            </ul>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home">
+        <div class="hero-container">
+            <div class="hero-content">
+                <h1>Kerolos Emad Saad</h1>
+                <p>.NET Developer & Backend Specialist</p>
+                <p>Fresh graduate passionate about backend development, continuous learning, and building scalable applications. Based in Cairo, Egypt with expertise in .NET, database design, and full-stack development.</p>
+                <div class="hero-buttons">
+                    <a href="#contact" class="btn btn-primary">Get In Touch</a>
+                    <a href="#projects" class="btn btn-secondary">View My Work</a>
+                </div>
+            </div>
+            <div class="hero-image">
+                <div class="profile-img-wrapper">
+                    <div class="profile-img">
+                        <img src="kerolos.jpg" alt="Kerolos Emad" />
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Education Section -->
+    <section id="about">
+        <div class="section-container">
+            <h2>Education</h2>
+            <div class="education-grid">
+                <div class="education-card reveal">
+                    <div class="education-logo">
+                        <img src="FCI.webp" alt="Assiut University" />
+                    </div>
+                    <div class="education-content">
+                        <h3>Bachelor of Computers and Information <br> Assiut University</h3>
+                        <p class="company">Assiut University</p>
+                        <p class="period">2021 - 2025</p>
+                        <p class="grade">Excellent with Honors | GPA: 3.81</p>
+                    </div>
+                </div>
+
+                <div class="education-card reveal">
+                    <div class="education-logo">
+                        <img src="ITI.webp" alt="ITI" />
+                    </div>
+                    <div class="education-content">
+                        <h3>Professional Development & BI Infused CRM</h3>
+                        <p class="company">ITI</p>
+                        <p class="period">October 2025 - June 2026</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Projects Section -->
+    <section id="projects">
+        <div class="projects-container">
+            <h2>Featured Projects</h2>
+            <div class="projects-slider">
+                <button class="slider-button" id="prevBtn">❮</button>
+                
+                <div class="project-card active reveal">
+                    <div class="project-image">
+                        <img src="train.PNG" alt="National Train Reservation" />
+                    </div>
+                    <div class="project-content">
+                        <h3>National Train Reservation</h3>
+                        <p>Simulation of a train ticket booking system including user registration, ticket management, and a mock payment gateway to demonstrate a seamless booking experience</p>
+                        <a href="https://github.com/kero-emad/SoftwareDevelopment2024/tree/master" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="eduplay.png" alt="EduPlay" />
+                    </div>
+                    <div class="project-content">
+                        <h3>EduPlay</h3>
+                        <p>Educational platform with engaging games, ranking system, and diverse topics to motivate students and users to learn in a fun and competitive way.</p>
+                        <a href="https://github.com/kero-emad/GraduationProject/tree/master" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="Tagoy.png" alt="Tagoy" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Tagoy - Church Management System</h3>
+                        <p>System for churches to manage student attendance, visitations, and subscriptions with SQL Server integration and comprehensive reporting.</p>
+                        <a href="https://github.com/kero-emad/Tagoy" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="dataquality.PNG" alt="Data Quality Management" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Data Quality Management Application</h3>
+                        <p>Streamlit application for efficient data cleaning, handling missing values, duplicates, outliers with visualizations and statistics.</p>
+                        <a href="https://github.com/kero-emad/DataQuality" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="dynamics.jfif" alt="Timesheet Management" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Dynamic Timesheet Management</h3>
+                        <p>Enterprise timesheet solution in Dynamics 365 with custom entities, automated workflows, BPFs, role-based security, and SLA tracking.</p>
+                        <a href="https://github.com/kero-emad/EjadaInternship" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="Enjedni.png" alt="Enjedni" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Enjedni - Smart Home Service Platform</h3>
+                        <p>Laravel-based marketplace connecting clients with skilled service providers featuring secure authentication and booking system.</p>
+                        <a href="https://github.com/kero-emad/Anjedni" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="dm.webp" alt="Developer Survey Analysis" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Stack Overflow Developer Survey Analysis</h3>
+                        <p>Data mining analysis with 99% accuracy predictive model to recommend developer roles, integrated into user-friendly Streamlit app.</p>
+                        <a href="https://github.com/kero-emad/DataMining" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <div class="project-card reveal">
+                    <div class="project-image">
+                        <img src="bigdata.jfif" alt="Climate Impact" />
+                    </div>
+                    <div class="project-content">
+                        <h3>Climate Change Impact on Agriculture</h3>
+                        <p>Data-driven Streamlit application analyzing climate impact on crop productivity and economic outcomes globally with interactive features.</p>
+                        <a href="https://github.com/kero-emad/BigDataProject" class="project-link" target="_blank">View on GitHub →</a>
+                    </div>
+                </div>
+
+                <button class="slider-button" id="nextBtn">❯</button>
+            </div>
+            <div class="project-counter" id="projectCounter">
+            </div>
+        </div>
+    </section>
+
+    <!-- Experience Section -->
+    <section id="experience">
+        <div class="section-container">
+            <h2>Experience & Training</h2>
+            <div class="experience-timeline">
+                <div class="experience-item reveal">
+                    <h3>Backend Internship</h3>
+                    <p class="company">ITIDA (in collaboration with ASORC)</p>
+                    <p class="period">January 2025 - March 2025</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>Database Workshop</h3>
+                    <p class="company">Petra Software</p>
+                    <p class="period">September 2024</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>Summer Internship</h3>
+                    <p class="company">AlexBank</p>
+                    <p class="period">September 2024</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>.Net Web Development Course</h3>
+                    <p class="company">ITI</p>
+                    <p class="period">July 2024</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>MS Dynamics CRM & Full Stack .NET Internship</h3>
+                    <p class="company">Ejada</p>
+                    <p class="period">July 2024</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>Backend Bootcamp</h3>
+                    <p class="company">Dragons Company</p>
+                    <p class="period">August - October 2023</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>CS50 Introduction to Programming with Python</h3>
+                    <p class="company">Harvard (Online)</p>
+                    <p class="period">October - December 2023</p>
+                </div>
+
+                <div class="experience-item reveal">
+                    <h3>Database Fundamentals Course</h3>
+                    <p class="company">ITI</p>
+                    <p class="period">July - August 2022</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact">
+        <div class="contact-content">
+            <h2>Get In Touch</h2>
+            <p class="contact-description">I'm always interested in hearing about new projects and opportunities.</p>
+            <div class="contact-buttons">
+                <a href="mailto:kyrillosemad2025@gmail.com" class="contact-btn">Email</a>
+                <a href="tel:+201287976730" class="contact-btn">Call</a>
+                <a href="https://github.com/kero-emad" class="contact-btn" target="_blank">GitHub</a>
+                <a href="https://www.linkedin.com/in/kerolos-emad-a63954285/" target="_blank" class="contact-btn">LinkedIn</a>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer>
+        <p>&copy; 2025 Kerolos Emad. All rights reserved.</p>
+    </footer>
+
+    <script>
+        var menuToggle = document.getElementById('menuToggle');
+        var navMenu = document.getElementById('navMenu');
+
+        menuToggle.addEventListener('click', function() {
+            if (navMenu.classList.contains('active')) {
+                navMenu.classList.remove('active');
+            } else {
+                navMenu.classList.add('active');
+            }
+        });
+
+        var links = document.querySelectorAll('.nav-menu a');
+        for (var i = 0; i < links.length; i++) {
+            links[i].addEventListener('click', function() {
+                navMenu.classList.remove('active');
+            });
+        }
+
+        var revealElements = document.querySelectorAll('.reveal');
+
+        function revealOnScroll() {
+            for (var i = 0; i < revealElements.length; i++) {
+                var element = revealElements[i];
+                var elementTop = element.getBoundingClientRect().top;
+                var elementBottom = element.getBoundingClientRect().bottom;
+
+                if (elementTop < window.innerHeight && elementBottom > 0) {
+                    element.classList.add('active');
+                }
+            }
+        }
+
+        window.addEventListener('scroll', revealOnScroll);
+        revealOnScroll();
+
+        var anchors = document.querySelectorAll('a[href^="#"]');
+        for (var j = 0; j < anchors.length; j++) {
+            anchors[j].addEventListener('click', function(e) {
+                e.preventDefault();
+                var targetId = this.getAttribute('href');
+                var target = document.querySelector(targetId);
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        }
+
+        // Projects Slider
+        // Projects Slider
+var currentProject = 0;
+var projectCards = document.querySelectorAll('.project-card');
+var totalProjects = projectCards.length;
+
+// Create dots
+var counterContainer = document.getElementById('projectCounter');
+for (var m = 0; m < totalProjects; m++) {
+    var dot = document.createElement('div');
+    dot.className = 'dot' + (m === 0 ? ' active' : '');
+    dot.setAttribute('data-index', m);
+    dot.addEventListener('click', function() {
+        currentProject = parseInt(this.getAttribute('data-index'));
+        updateProjectDisplay();
+    });
+    counterContainer.appendChild(dot);
+}
+
+function updateProjectDisplay() {
+    for (var i = 0; i < projectCards.length; i++) {
+        projectCards[i].classList.remove('active');
+    }
+    projectCards[currentProject].classList.add('active');
+
+    // Update dots
+    var dots = document.querySelectorAll('.dot');
+    for (var d = 0; d < dots.length; d++) {
+        dots[d].classList.remove('active');
+    }
+    dots[currentProject].classList.add('active');
+}
+
+document.getElementById('nextBtn').addEventListener('click', function() {
+    currentProject = (currentProject + 1) % totalProjects;
+    updateProjectDisplay();
+});
+
+document.getElementById('prevBtn').addEventListener('click', function() {
+    currentProject = (currentProject - 1 + totalProjects) % totalProjects;
+    updateProjectDisplay();
+});
+
+        var cards = document.querySelectorAll('.education-card, .experience-item');
+        for (var k = 0; k < cards.length; k++) {
+            cards[k].style.animationDelay = (k * 0.1) + 's';
+        }
+    </script>
+</body>
+</html>
