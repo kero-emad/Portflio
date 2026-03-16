@@ -16,6 +16,88 @@
             background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
             color: #fff;
             line-height: 1.6;
+            overflow-x: hidden;
+        }
+
+        /* Splash Screen */
+        .splash-screen {
+            position: fixed;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(135deg, #0f172a 0%, #1e293b 50%, #0f172a 100%);
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            z-index: 9999;
+            animation: splashOut 1s ease-in-out 2.5s forwards;
+        }
+
+        .splash-content {
+            text-align: center;
+        }
+
+        .splash-content h1 {
+            font-size: 72px;
+            background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+            font-weight: bold;
+            margin-bottom: 20px;
+            letter-spacing: 2px;
+            animation: slideInDown 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.2s backwards;
+        }
+
+        .splash-content p {
+            font-size: 24px;
+            color: #cbd5e1;
+            letter-spacing: 1px;
+            animation: slideInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.4s backwards;
+        }
+
+        .loader {
+            width: 60px;
+            height: 60px;
+            margin: 30px auto;
+            border: 4px solid #334155;
+            border-top: 4px solid #60a5fa;
+            border-right: 4px solid #06b6d4;
+            border-radius: 50%;
+            animation: spin 1.5s linear infinite, slideInUp 1.2s cubic-bezier(0.34, 1.56, 0.64, 1) 0.6s backwards;
+        }
+
+        @keyframes spin {
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes slideInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes slideInUp {
+            from {
+                opacity: 0;
+                transform: translateY(100px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes splashOut {
+            to {
+                opacity: 0;
+                visibility: hidden;
+                transform: scale(1.1);
+            }
         }
 
         /* Navigation */
@@ -27,6 +109,16 @@
             border-bottom: 1px solid #334155;
             z-index: 1000;
             top: 0;
+            animation: slideDown 0.6s ease-out 2.5s backwards;
+        }
+
+        @keyframes slideDown {
+            from {
+                transform: translateY(-100%);
+            }
+            to {
+                transform: translateY(0);
+            }
         }
 
         .nav-container {
@@ -46,6 +138,12 @@
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
+            animation: glow 3s ease-in-out infinite;
+        }
+
+        @keyframes glow {
+            0%, 100% { filter: drop-shadow(0 0 5px #60a5fa); }
+            50% { filter: drop-shadow(0 0 15px #60a5fa); }
         }
 
         .nav-menu {
@@ -57,8 +155,9 @@
         .nav-menu a {
             color: #fff;
             text-decoration: none;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             position: relative;
+            font-weight: 500;
         }
 
         .nav-menu a:hover {
@@ -72,7 +171,7 @@
             left: 0;
             width: 0;
             height: 2px;
-            background: #60a5fa;
+            background: linear-gradient(90deg, #60a5fa, #06b6d4);
             transition: width 0.3s ease;
         }
 
@@ -96,6 +195,9 @@
             max-width: 1200px;
             margin-left: auto;
             margin-right: auto;
+            min-height: calc(100vh - 60px);
+            display: flex;
+            align-items: center;
         }
 
         .hero-container {
@@ -106,38 +208,41 @@
         }
 
         .hero-content h1 {
-            font-size: 56px;
+            font-size: 64px;
             margin-bottom: 20px;
             background: linear-gradient(135deg, #60a5fa 0%, #06b6d4 100%);
             -webkit-background-clip: text;
             -webkit-text-fill-color: transparent;
             background-clip: text;
-            animation: slideInLeft 0.8s ease-out;
+            animation: slideInLeft 0.8s ease-out 2.5s backwards;
+            font-weight: 800;
+            letter-spacing: -1px;
         }
 
         .hero-content p {
-            font-size: 24px;
+            font-size: 20px;
             color: #cbd5e1;
             margin-bottom: 15px;
-            animation: slideInLeft 0.8s ease-out 0.1s backwards;
+            animation: slideInLeft 0.8s ease-out 2.6s backwards;
+            line-height: 1.6;
         }
 
         .hero-content > p:last-of-type {
             font-size: 16px;
             color: #94a3b8;
             margin-bottom: 30px;
-            animation: slideInLeft 0.8s ease-out 0.2s backwards;
+            animation: slideInLeft 0.8s ease-out 2.7s backwards;
         }
 
         .hero-buttons {
             display: flex;
             gap: 20px;
             flex-wrap: wrap;
-            animation: slideInLeft 0.8s ease-out 0.3s backwards;
+            animation: slideInLeft 0.8s ease-out 2.8s backwards;
         }
 
         .btn {
-            padding: 12px 30px;
+            padding: 14px 35px;
             border-radius: 8px;
             text-decoration: none;
             font-weight: 600;
@@ -145,34 +250,53 @@
             cursor: pointer;
             border: none;
             font-size: 16px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .btn::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: rgba(255, 255, 255, 0.2);
+            transition: left 0.3s ease;
+            z-index: -1;
+        }
+
+        .btn:hover::before {
+            left: 100%;
         }
 
         .btn-primary {
-            background: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: #fff;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .btn-primary:hover {
-            background: #2563eb;
-            transform: translateY(-2px);
-            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.3);
+            transform: translateY(-4px);
+            box-shadow: 0 20px 40px rgba(59, 130, 246, 0.5);
         }
 
         .btn-secondary {
             border: 2px solid #60a5fa;
-            color: #fff;
+            color: #60a5fa;
             background: transparent;
         }
 
         .btn-secondary:hover {
-            background: rgba(96, 165, 250, 0.1);
-            transform: translateY(-2px);
+            background: #60a5fa;
+            color: #0f172a;
+            transform: translateY(-4px);
         }
 
         .hero-image {
             display: flex;
             justify-content: center;
-            animation: slideInRight 0.8s ease-out;
+            animation: slideInRight 0.8s ease-out 2.5s backwards;
         }
 
         .profile-img-wrapper {
@@ -193,25 +317,55 @@
             justify-content: center;
             color: #64748b;
             font-size: 14px;
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
-            box-shadow: 0 20px 60px rgba(96, 165, 250, 0.2);
+            transition: all 0.3s ease;
+            box-shadow: 0 0 30px rgba(96, 165, 250, 0.3);
+            position: relative;
+        }
+
+        .profile-img::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 200%;
+            height: 200%;
+            background: linear-gradient(45deg, transparent, rgba(255, 255, 255, 0.1), transparent);
+            animation: shimmer 3s infinite;
+        }
+
+        @keyframes shimmer {
+            0% { transform: translate(-100%, -100%) rotate(45deg); }
+            100% { transform: translate(100%, 100%) rotate(45deg); }
         }
 
         .profile-img:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 30px 80px rgba(96, 165, 250, 0.3);
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 30px 60px rgba(96, 165, 250, 0.4);
         }
 
         .profile-img img {
             width: 100%;
             height: 100%;
             object-fit: cover;
+            z-index: 1;
         }
 
         /* About Section */
         #about {
             padding: 80px 20px;
             background: rgba(30, 41, 59, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #about::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 1px;
+            background: linear-gradient(90deg, transparent, #60a5fa, transparent);
         }
 
         .section-container {
@@ -224,6 +378,21 @@
             text-align: center;
             margin-bottom: 60px;
             color: #fff;
+            position: relative;
+            display: inline-block;
+            width: 100%;
+        }
+
+        h2::after {
+            content: '';
+            position: absolute;
+            bottom: -10px;
+            left: 50%;
+            transform: translateX(-50%);
+            width: 100px;
+            height: 4px;
+            background: linear-gradient(90deg, #60a5fa, #06b6d4);
+            border-radius: 2px;
         }
 
         .education-grid {
@@ -233,27 +402,46 @@
         }
 
         .education-card {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid #334155;
-            border-radius: 8px;
+            border-radius: 12px;
             padding: 40px 30px;
             text-align: center;
             transition: all 0.3s ease;
             animation: fadeInUp 0.6s ease-out;
+            position: relative;
+            overflow: hidden;
+        }
+
+        .education-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            height: 2px;
+            background: linear-gradient(90deg, #60a5fa, #06b6d4);
+            transform: scaleX(0);
+            transform-origin: left;
+            transition: transform 0.3s ease;
+        }
+
+        .education-card:hover::before {
+            transform: scaleX(1);
         }
 
         .education-card:hover {
             border-color: #60a5fa;
-            box-shadow: 0 10px 30px rgba(96, 165, 250, 0.1);
-            transform: translateY(-5px);
+            box-shadow: 0 15px 40px rgba(96, 165, 250, 0.2);
+            transform: translateY(-8px);
         }
 
         .education-logo {
             width: 120px;
             height: 120px;
             background: #334155;
-            border-radius: 8px;
-            border: 1px solid #475569;
+            border-radius: 12px;
+            border: 2px solid #475569;
             margin: 0 auto 25px;
             overflow: hidden;
             display: flex;
@@ -261,6 +449,12 @@
             justify-content: center;
             color: #64748b;
             font-size: 12px;
+            transition: all 0.3s ease;
+        }
+
+        .education-card:hover .education-logo {
+            transform: scale(1.1) rotate(5deg);
+            border-color: #60a5fa;
         }
 
         .education-logo img {
@@ -294,12 +488,26 @@
         /* Projects Section */
         #projects {
             padding: 80px 20px;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #projects::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .projects-container {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            z-index: 1;
         }
 
         .projects-slider {
@@ -311,23 +519,54 @@
         }
 
         .project-card {
-            background: #1e293b;
+            background: linear-gradient(135deg, #1e293b 0%, #0f172a 100%);
             border: 1px solid #334155;
-            border-radius: 8px;
+            border-radius: 12px;
             overflow: hidden;
             flex: 1;
             transition: all 0.3s ease;
             animation: fadeInUp 0.6s ease-out;
             display: none;
+            position: relative;
         }
 
         .project-card.active {
             display: block;
+            animation: scaleIn 0.5s ease-out;
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        .project-card::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: linear-gradient(135deg, rgba(96, 165, 250, 0.1) 0%, transparent 100%);
+            opacity: 0;
+            transition: opacity 0.3s ease;
+            z-index: 1;
+        }
+
+        .project-card:hover::before {
+            opacity: 1;
         }
 
         .project-card:hover {
             border-color: #60a5fa;
-            box-shadow: 0 20px 40px rgba(96, 165, 250, 0.2);
+            box-shadow: 0 25px 50px rgba(96, 165, 250, 0.25);
+            transform: translateY(-10px);
         }
 
         .project-image {
@@ -340,6 +579,7 @@
             justify-content: center;
             color: #64748b;
             font-size: 12px;
+            position: relative;
         }
 
         .project-image img {
@@ -347,22 +587,30 @@
             height: 100%;
             object-fit: contain;
             background: #0f172a;
+            transition: transform 0.3s ease;
+        }
+
+        .project-card:hover .project-image img {
+            transform: scale(1.05);
         }
 
         .project-content {
             padding: 40px;
+            position: relative;
+            z-index: 2;
         }
 
         .project-card h3 {
             font-size: 28px;
             color: #60a5fa;
             margin-bottom: 20px;
+            font-weight: 700;
         }
 
         .project-card p {
             color: #cbd5e1;
             margin-bottom: 30px;
-            font-size: 16px;
+            font-size: 15px;
             line-height: 1.8;
         }
 
@@ -370,10 +618,20 @@
             color: #60a5fa;
             text-decoration: none;
             font-weight: 600;
-            transition: color 0.3s ease;
+            transition: all 0.3s ease;
             display: inline-flex;
             align-items: center;
             gap: 8px;
+            position: relative;
+        }
+
+        .project-link::after {
+            content: '→';
+            transition: transform 0.3s ease;
+        }
+
+        .project-link:hover::after {
+            transform: translateX(5px);
         }
 
         .project-link:hover {
@@ -384,7 +642,7 @@
             width: 50px;
             height: 50px;
             border-radius: 50%;
-            background: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: #fff;
             border: none;
             font-size: 24px;
@@ -394,11 +652,13 @@
             align-items: center;
             justify-content: center;
             flex-shrink: 0;
+            box-shadow: 0 10px 30px rgba(59, 130, 246, 0.3);
         }
 
         .slider-button:hover {
-            background: #2563eb;
-            transform: scale(1.1);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: scale(1.15);
+            box-shadow: 0 15px 40px rgba(59, 130, 246, 0.4);
         }
 
         .slider-button:active {
@@ -423,8 +683,9 @@
         }
 
         .dot.active {
-            background: #60a5fa;
-            transform: scale(1.3);
+            background: linear-gradient(135deg, #60a5fa, #06b6d4);
+            transform: scale(1.5);
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
         }
 
         .dot:hover {
@@ -435,12 +696,26 @@
         #experience {
             padding: 80px 20px;
             background: rgba(30, 41, 59, 0.5);
+            position: relative;
+            overflow: hidden;
+        }
+
+        #experience::before {
+            content: '';
+            position: absolute;
+            bottom: -50%;
+            left: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(6, 182, 212, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .experience-timeline {
             max-width: 1200px;
             margin: 0 auto;
             position: relative;
+            z-index: 1;
         }
 
         .experience-item {
@@ -449,6 +724,11 @@
             padding-bottom: 30px;
             position: relative;
             animation: slideInLeft 0.6s ease-out;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover {
+            padding-left: 40px;
         }
 
         .experience-item::before {
@@ -458,15 +738,22 @@
             top: 0;
             width: 20px;
             height: 20px;
-            background: #60a5fa;
+            background: linear-gradient(135deg, #60a5fa, #06b6d4);
             border-radius: 50%;
             border: 3px solid #0f172a;
+            transition: all 0.3s ease;
+        }
+
+        .experience-item:hover::before {
+            box-shadow: 0 0 20px rgba(96, 165, 250, 0.5);
+            transform: scale(1.3);
         }
 
         .experience-item h3 {
             font-size: 20px;
             color: #60a5fa;
             margin-bottom: 5px;
+            font-weight: 700;
         }
 
         .experience-item .company {
@@ -480,19 +767,30 @@
             margin-bottom: 8px;
         }
 
-        .experience-item .description {
-            color: #cbd5e1;
-        }
-
         /* Contact Section */
         #contact {
             padding: 80px 20px;
             text-align: center;
+            position: relative;
+            overflow: hidden;
+        }
+
+        #contact::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            right: -50%;
+            width: 500px;
+            height: 500px;
+            background: radial-gradient(circle, rgba(96, 165, 250, 0.1) 0%, transparent 70%);
+            pointer-events: none;
         }
 
         .contact-content {
             max-width: 1200px;
             margin: 0 auto;
+            position: relative;
+            z-index: 1;
         }
 
         .contact-description {
@@ -513,7 +811,7 @@
             display: inline-flex;
             align-items: center;
             gap: 10px;
-            background: #3b82f6;
+            background: linear-gradient(135deg, #3b82f6 0%, #2563eb 100%);
             color: #fff;
             padding: 12px 25px;
             border-radius: 8px;
@@ -522,12 +820,13 @@
             transition: all 0.3s ease;
             border: none;
             cursor: pointer;
+            box-shadow: 0 10px 20px rgba(59, 130, 246, 0.2);
         }
 
         .contact-btn:hover {
-            background: #2563eb;
-            transform: translateY(-3px);
-            box-shadow: 0 10px 25px rgba(59, 130, 246, 0.3);
+            background: linear-gradient(135deg, #2563eb 0%, #1d4ed8 100%);
+            transform: translateY(-4px);
+            box-shadow: 0 15px 30px rgba(59, 130, 246, 0.3);
         }
 
         /* Footer */
@@ -536,6 +835,7 @@
             padding: 30px 20px;
             text-align: center;
             color: #94a3b8;
+            background: linear-gradient(180deg, transparent 0%, rgba(0, 0, 0, 0.3) 100%);
         }
 
         /* Animations */
@@ -594,6 +894,10 @@
 
         /* Responsive */
         @media (max-width: 768px) {
+            .splash-content h1 {
+                font-size: 48px;
+            }
+
             .nav-menu {
                 display: none;
             }
@@ -635,24 +939,12 @@
             }
 
             .hero-content p {
-                font-size: 20px;
-            }
-
-            .hero-content > p:last-of-type {
-                font-size: 15px;
+                font-size: 18px;
             }
 
             .profile-img-wrapper {
                 width: 280px;
                 height: 350px;
-            }
-
-            .profile-img {
-                border-radius: 15px;
-            }
-
-            .hero-buttons {
-                gap: 15px;
             }
 
             .btn {
@@ -671,7 +963,6 @@
 
             .education-grid {
                 grid-template-columns: 1fr;
-                gap: 20px;
             }
 
             .education-card {
@@ -681,11 +972,6 @@
             .education-logo {
                 width: 110px;
                 height: 110px;
-                margin-bottom: 20px;
-            }
-
-            .education-content h3 {
-                font-size: 20px;
             }
 
             #projects {
@@ -699,14 +985,12 @@
 
             .project-card {
                 flex: 1 1 100%;
-                min-width: 0;
             }
 
             .slider-button {
                 width: 45px;
                 height: 45px;
                 font-size: 20px;
-                flex-shrink: 0;
             }
 
             .slider-button:first-of-type {
@@ -727,54 +1011,22 @@
 
             .project-card h3 {
                 font-size: 22px;
-                margin-bottom: 15px;
             }
 
             .project-card p {
                 font-size: 14px;
-                margin-bottom: 15px;
-            }
-
-            .project-counter {
-                gap: 6px;
-                margin-top: 20px;
-                flex-wrap: wrap;
-            }
-
-            .dot {
-                width: 10px;
-                height: 10px;
             }
 
             #experience {
                 padding: 60px 20px;
             }
 
-            .experience-timeline {
-                max-width: 100%;
-            }
-
             .experience-item {
                 padding-left: 25px;
-                padding-bottom: 25px;
             }
 
             .experience-item::before {
                 left: -10px;
-                width: 18px;
-                height: 18px;
-            }
-
-            .experience-item h3 {
-                font-size: 18px;
-            }
-
-            .experience-item .company {
-                font-size: 14px;
-            }
-
-            .experience-item .period {
-                font-size: 13px;
             }
 
             #contact {
@@ -783,24 +1035,29 @@
 
             .contact-buttons {
                 flex-direction: column;
-                gap: 12px;
             }
 
             .contact-btn {
-                justify-content: center;
                 width: 100%;
-                padding: 12px 20px;
-                font-size: 14px;
+                justify-content: center;
             }
 
             footer {
                 padding: 20px 15px;
-                font-size: 14px;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Splash Screen -->
+    <div class="splash-screen" id="splashScreen">
+        <div class="splash-content">
+            <h1>Kerolos Emad</h1>
+            <p>.NET Developer & Backend Specialist</p>
+            <div class="loader"></div>
+        </div>
+    </div>
+
     <!-- Navigation -->
     <nav>
         <div class="nav-container">
@@ -848,7 +1105,7 @@
                         <img src="FCI.webp" alt="Assiut University" />
                     </div>
                     <div class="education-content">
-                        <h3>Bachelor of Computers and Information <br> Assiut University</h3>
+                        <h3>Bachelor of Computers and Information</h3>
                         <p class="company">Assiut University</p>
                         <p class="period">2021 - 2025</p>
                         <p class="grade">Excellent with Honors | GPA: 3.81</p>
@@ -883,7 +1140,7 @@
                     <div class="project-content">
                         <h3>National Train Reservation</h3>
                         <p>Simulation of a train ticket booking system including user registration, ticket management, and a mock payment gateway to demonstrate a seamless booking experience</p>
-                        <a href="https://github.com/kero-emad/SoftwareDevelopment2024/tree/master" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/SoftwareDevelopment2024/tree/master" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -894,7 +1151,7 @@
                     <div class="project-content">
                         <h3>EduPlay</h3>
                         <p>Educational platform with engaging games, ranking system, and diverse topics to motivate students and users to learn in a fun and competitive way.</p>
-                        <a href="https://github.com/kero-emad/GraduationProject/tree/master" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/GraduationProject/tree/master" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -905,7 +1162,7 @@
                     <div class="project-content">
                         <h3>Tagoy - Church Management System</h3>
                         <p>System for churches to manage student attendance, visitations, and subscriptions with SQL Server integration and comprehensive reporting.</p>
-                        <a href="https://github.com/kero-emad/Tagoy" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/Tagoy" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -916,7 +1173,7 @@
                     <div class="project-content">
                         <h3>Data Quality Management Application</h3>
                         <p>Streamlit application for efficient data cleaning, handling missing values, duplicates, outliers with visualizations and statistics.</p>
-                        <a href="https://github.com/kero-emad/DataQuality" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/DataQuality" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -927,7 +1184,7 @@
                     <div class="project-content">
                         <h3>Dynamic Timesheet Management</h3>
                         <p>Enterprise timesheet solution in Dynamics 365 with custom entities, automated workflows, BPFs, role-based security, and SLA tracking.</p>
-                        <a href="https://github.com/kero-emad/EjadaInternship" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/EjadaInternship" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -938,7 +1195,7 @@
                     <div class="project-content">
                         <h3>Enjedni - Smart Home Service Platform</h3>
                         <p>Laravel-based marketplace connecting clients with skilled service providers featuring secure authentication and booking system.</p>
-                        <a href="https://github.com/kero-emad/Anjedni" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/Anjedni" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -949,7 +1206,7 @@
                     <div class="project-content">
                         <h3>Stack Overflow Developer Survey Analysis</h3>
                         <p>Data mining analysis with 99% accuracy predictive model to recommend developer roles, integrated into user-friendly Streamlit app.</p>
-                        <a href="https://github.com/kero-emad/DataMining" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/DataMining" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
@@ -960,14 +1217,13 @@
                     <div class="project-content">
                         <h3>Climate Change Impact on Agriculture</h3>
                         <p>Data-driven Streamlit application analyzing climate impact on crop productivity and economic outcomes globally with interactive features.</p>
-                        <a href="https://github.com/kero-emad/BigDataProject" class="project-link" target="_blank">View on GitHub →</a>
+                        <a href="https://github.com/kero-emad/BigDataProject" class="project-link" target="_blank">View on GitHub</a>
                     </div>
                 </div>
 
                 <button class="slider-button" id="nextBtn">❯</button>
             </div>
-            <div class="project-counter" id="projectCounter">
-            </div>
+            <div class="project-counter" id="projectCounter"></div>
         </div>
     </section>
 
@@ -1047,15 +1303,16 @@
     </footer>
 
     <script>
+        // Splash screen timing
+        setTimeout(function() {
+            document.getElementById('splashScreen').style.display = 'none';
+        }, 3300);
+
         var menuToggle = document.getElementById('menuToggle');
         var navMenu = document.getElementById('navMenu');
 
         menuToggle.addEventListener('click', function() {
-            if (navMenu.classList.contains('active')) {
-                navMenu.classList.remove('active');
-            } else {
-                navMenu.classList.add('active');
-            }
+            navMenu.classList.toggle('active');
         });
 
         var links = document.querySelectorAll('.nav-menu a');
@@ -1102,7 +1359,6 @@
         var projectCards = document.querySelectorAll('.project-card');
         var totalProjects = projectCards.length;
 
-        // Create dots
         var counterContainer = document.getElementById('projectCounter');
         for (var m = 0; m < totalProjects; m++) {
             var dot = document.createElement('div');
@@ -1121,7 +1377,6 @@
             }
             projectCards[currentProject].classList.add('active');
 
-            // Update dots
             var dots = document.querySelectorAll('.dot');
             for (var d = 0; d < dots.length; d++) {
                 dots[d].classList.remove('active');
